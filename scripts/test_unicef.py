@@ -2,13 +2,6 @@
 """Test_UNICEF.ipynb
 """
 
-from google.colab import drive
-drive.mount('/content/drive', force_remount=True)
-
-!pip install -q tf-models-official
-
-!pip install -q -U tensorflow-text
-
 import os
 import shutil
 

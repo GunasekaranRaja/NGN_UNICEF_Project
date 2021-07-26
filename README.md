@@ -4,20 +4,19 @@ This model involves categorising questions from the dataset using the Small BERT
 
 ### Software Prerequisites
 
-- [Python](https://www.python.org/downloads/) 3.6.0+
-- [Pytorch](https://pytorch.org/) 1.10.0+
-- [Tensorflow](https://www.tensorflow.org/install) 2.0
-- [Jupyter Notebook](https://jupyter.org/install) 3.0
+- [Python](https://www.python.org/downloads/) 3.7.11
+- [Tensorflow](https://www.tensorflow.org/install) 2.5.0
+- [Kersas](https://keras.io/) 2.5.0
 
 ### Downloading Prerequisite Packages
 
 Run the following commands to install the additional packages required to run the model:
 
 ```bash
-pip install transformers
-pip install -q -U tensorflow-text
-pip install -q tf-models-official
-pip install pyyaml h5py
+pip install transformers==4.9.0
+pip install -q -U tensorflow-text==2.5.0
+pip install -q tf-models-official==2.5.1
+pip install pyyaml==5.4.1 h5py==3.1.0
 ```
 
 ### Download, Setup and Run
@@ -28,5 +27,5 @@ pip install pyyaml h5py
 git clone https://github.com/GunasekaranRaja/NGN_UNICEF_Project.git
 ```
 
-1. Navigate to scripts folder and launch the jupyter notebook via jupyter labs.
-2. Run all the cells in the notebook in appropriate order.
+2. Navigate to scripts folder and launch the jupyter notebook via jupyter labs.
+3. Run all the cells in the notebook in appropriate order.

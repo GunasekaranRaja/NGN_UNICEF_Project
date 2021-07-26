@@ -35,7 +35,7 @@ from keras.models import load_model
 
 from tensorflow import keras
 import tensorflow_text
-reloaded_model = keras.models.load_model('/content/drive/MyDrive/model23', compile=False)
+reloaded_model = keras.models.load_model('../model', compile=False)
 
 def print_my_examples(inputs, results):
   result_for_printing = \

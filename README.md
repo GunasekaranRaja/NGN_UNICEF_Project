@@ -4,22 +4,9 @@ This model involves categorising questions from the dataset using the Small BERT
 
 ### Requirements
 
-Python:3.7.11
+Python:3.8 
 
-Tensorflow:2.5.0
-
-Keras:2.5.0
-
-Transformers :4.9.0
-
-Tensorflow text:2.5.0
-
-Tf-models-officials:2.5.1
-
-Pyyaml: 5.4.1
-
-h5py : 3.1.0
-
+# Library requirements are written in the requirements.txt file
 
 ### Download, Setup and Run
 

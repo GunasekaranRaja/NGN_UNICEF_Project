@@ -6,7 +6,7 @@ This model involves categorising questions from the dataset using the Small BERT
 
 Python:3.8 
 
-####### Library requirements are written in the requirements.txt file
+###### Library requirements are written in the requirements.txt file
 
 ### Download, Setup and Run
 

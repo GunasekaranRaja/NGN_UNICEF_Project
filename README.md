@@ -1,23 +1,26 @@
+# Prototype UI
+
+## Requirements
+1. NodeJS
+2. AngularJS [npm install -g @angular/cli]
+
+## Instructions to run
+1. Navigate to the ui folder
+2. Install required packages [npm install]
+3. Run the UI server [ionic serve]
+4. Navigate to browser. The url is http://localhost:8100
+
+
+
+
+
+
+
 # SKILLSET CLASSIFICATION MODEL
 
-This model involves categorising questions from the dataset using the Small BERTs Model. The model uses smaller transformer blocks compared to the basic BERT model. It allows easy fine-tuning of the model and explores various tradeoffs between speed, size and quality. Dataset consists of questions and the category to which it pertains. The model trains on the given dataset and classifies new questions to their appropriate category.
+This model involves categorising questions from the dataset using the Uncased BERT Model. Dataset consists of questions and the category to which it pertains. The model trains on the given dataset and classifies new questions to their appropriate category.
 
-### Requirements
+### Analysis and Trends of model 
+Acuuracy and loss per epoch is given in the model statistics section
 
-Python:3.8 
 
-###### Library requirements are written in the requirements.txt file
-
-### Download, Setup and Run
-
-1. Clone the repository locally. 
-
-```bash
-git clone https://github.com/GunasekaranRaja/NGN_UNICEF_Project.git
-```
-2. Create a new python virtual environment to avoid conflicts.
-3. install requirements
-```bash
-pip install -r requirements.txt
-```
-4. Navigate to scripts folder and run the testing script.

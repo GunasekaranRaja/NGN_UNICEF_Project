@@ -7,7 +7,7 @@ app.secret_key = 'SKM_Api_Key'
 smdb = mysql.connector.connect(
   host="db4free.net",
   user="skillmadmin",
-  password="skillmpass",
+  password="********",
   database="skillmdatabase"
 )
 

@@ -11,6 +11,7 @@ smdb = mysql.connector.connect(
   database="skillmdatabase"
 )
 
+
 smcursor = smdb.cursor()
 
 

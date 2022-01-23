@@ -1,11 +1,210 @@
-<div class="landing" *ngIf="!startTest">
+<!-- <ion-header class="header" collapse="fade" [translucent]="true">
+  <ion-toolbar>
+    <img class="logoimg" src="../../assets/Freshminds.png" alt="Logo" />
+    <ion-title id="head">Skill Meter</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<div class="header">
+  <!-- <a href="#default" class="logo">CompanyLogo</a> -->
+  <img class="logo" src="../../assets/Freshminds.png" alt="Logo" />
+  <div class="header-right">
+    <a class="active">Home</a>
+    <a>Contact</a>
+    <a>About</a>
+  </div>
+</div>
+
+<div class="landing" *ngIf="!base">
   <header id="showcase">
     <h1>Skill Meter</h1>
     <p>Future of young aspiring minds</p>
     <a (click)="start()" class="button">Start Test</a>
   </header>
 </div>
+<div class="card-center" *ngIf="startBox">
+  <ion-card class="normal-box" *ngIf="!result">
+    <div class="items_main">
+      <ion-card-content>
+        <ion-button
+          fill="solid"
+          class="item-onee"
+          size="medium"
+          color="warning"
+          (click)="makeStudentBased()"
+          >Student</ion-button
+        >
+        <ion-button
+          fill="solid"
+          size="medium"
+          class="item-onee"
+          color="warning"
+          (click)="makeJobBased()"
+          >Job-Seeker</ion-button
+        >
+      </ion-card-content>
+    </div>
+  </ion-card>
+</div>
 
+<div class="card-center" *ngIf="studentBox">
+  <ion-card class="box2" *ngIf="!result">
+    <ion-card-header class="heading1">
+      <b>Student Details</b>
+    </ion-card-header>
+    <div class="items">
+      <ion-card-content>
+        <ion-item color="warning">
+          <ion-input placeholder="College Name"></ion-input>
+        </ion-item>
+        <br />
+        <ion-item color="warning">
+          <ion-input placeholder="Branch"></ion-input>
+        </ion-item>
+        <br />
+        <div class="fx">
+          <ion-button
+            fill="solid"
+            size="medium"
+            class="item-one"
+            color="warning"
+            (click)="makeStart()"
+            >Start</ion-button
+          >
+        </div>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</div>
+
+<div class="card-center" *ngIf="jobBox">
+  <ion-card class="box3" *ngIf="!result">
+    <ion-card-header class="heading1">
+      <b>Job Seeker Details</b>
+    </ion-card-header>
+    <div class="items">
+      <ion-card-content>
+        <ion-item color="warning">
+          <ion-label class="select"><b>Discipline</b></ion-label>
+          <ion-select class="select" interface="popover">
+            <ion-select-option value="nes">Engineering</ion-select-option>
+            <ion-select-option value="n64"
+              >Business Administration</ion-select-option
+            >
+            <ion-select-option value="ps">Economics</ion-select-option>
+            <ion-select-option value="genesis">Art</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Favorite food</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+              {{food.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+        <br />
+        <!-- <ion-item color="warning">
+          <ion-input placeholder="Degree"></ion-input>
+        </ion-item> -->
+        <ion-item color="warning">
+          <ion-label class="select"><b>Degree</b></ion-label>
+          <ion-select class="select" interface="popover">
+            <ion-select-option value="nes">BE</ion-select-option>
+            <ion-select-option value="n64">BCom</ion-select-option>
+            <ion-select-option value="ps">BBA</ion-select-option>
+            <ion-select-option value="genesis">BTech</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <br />
+        <!-- <ion-item color="warning">
+          <ion-input placeholder="Graduation Year"></ion-input>
+        </ion-item> -->
+        <ion-item color="warning" interface="popover">
+          <ion-label class="select"><b>Graduation Year</b></ion-label>
+          <ion-select class="select" value="2010">
+            <ion-select-option value="1989">2010</ion-select-option>
+            <ion-select-option value="1990">2011</ion-select-option>
+            <ion-select-option value="1991">2012</ion-select-option>
+            <ion-select-option value="1992">2013</ion-select-option>
+            <ion-select-option value="1993">2014</ion-select-option>
+            <ion-select-option value="1994">2015</ion-select-option>
+            <ion-select-option value="1995">2016</ion-select-option>
+            <ion-select-option value="1996">2017</ion-select-option>
+            <ion-select-option value="1997">2018</ion-select-option>
+            <ion-select-option value="1998">2019</ion-select-option>
+            <ion-select-option value="1999">2020</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <br />
+        <div class="fx">
+          <ion-button
+            fill="solid"
+            size="medium"
+            class="item-one"
+            color="warning"
+            (click)="makeStart()"
+            >Start</ion-button
+          >
+        </div>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</div>
+
+<!-- <div class="card-center" *ngIf="startBox">
+  <ion-card class="start-box" *ngIf="!result">
+    <ion-card-content>
+      <ion-button
+        fill="solid"
+        class="items"
+        size="medium"
+        color="warning"
+        (click)="makeCategortyBased()"
+        >Choose a Category</ion-button
+      >
+      <ion-button
+        fill="solid"
+        class="items"
+        size="medium"
+        color="warning"
+        (click)="makeStart()"
+        >Random</ion-button
+      >
+    </ion-card-content>
+  </ion-card>
+</div> -->
+<div class="card-center" *ngIf="categoryBased">
+  <ion-card class="questions" *ngIf="!result">
+    <ion-card-content>
+      <ion-card-header class="heading" question-number
+        ><b>Choose a Category</b></ion-card-header
+      >
+      <br />
+      <ion-list>
+        <ion-radio-group class="ans-mult" (ionChange)="setCategory($event)">
+          <ion-item color="tertiary" *ngFor="let option of categories">
+            <ion-label>{{ option }}</ion-label>
+            <ion-radio
+              slot="start"
+              color="success"
+              [value]="option"
+            ></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+      <ion-button
+        fill="solid"
+        class="next"
+        size="medium"
+        color="warning"
+        (click)="makeStart()"
+        [disabled]="choosenCategory===''"
+        >Next</ion-button
+      >
+    </ion-card-content>
+  </ion-card>
+</div>
 <div class="card-center" *ngIf="startTest">
   <ion-card class="questions" *ngIf="!result">
     <ion-card-content>
@@ -61,7 +260,7 @@
           [bottomLabel]="bottomLabel"
           class="gauge"
         ></rg-gauge-chart>
-        <div id="chart">
+        <div id="chart" *ngIf="secondChart">
           <apx-chart
             [series]="chartOptions.series"
             [chart]="chartOptions.chart"
@@ -71,6 +270,52 @@
           ></apx-chart>
         </div>
       </div>
+      <ion-button
+        fill="solid"
+        class="next"
+        size="large"
+        color="warning"
+        (click)="nextQuestion()"
+        >Download Your Skill Report</ion-button
+      >
     </ion-card-content>
   </ion-card>
+  <div class="result_part">
+    <ion-button
+      *ngIf="result"
+      fill="solid"
+      class="next"
+      size="medium"
+      color="warning"
+      >Skill Gap Courses</ion-button
+    >
+    <ion-button
+      *ngIf="result"
+      fill="solid"
+      class="next"
+      size="medium"
+      color="warning"
+      >Forward Profile to Companies</ion-button
+    >
+  </div>
 </div>
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer">
+      <div>
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"
+          ><img
+            alt="Creative Commons License"
+            style="border-width: 0"
+            src="https://i.creativecommons.org/l/by/4.0/88x31.png"
+        /></a>
+      </div>
+      <div style="margin-left: 20px">
+        This work is licensed under a
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"
+          >Creative Commons Attribution 4.0 International License</a
+        >.
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

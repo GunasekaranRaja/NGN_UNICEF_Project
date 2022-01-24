@@ -12,16 +12,25 @@ Original file is located at
 
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-df = pd.read_csv("/content/Dataset - Sheet1.csv")
+df = pd.read_csv("/content/trainsp.csv")
 enc=LabelEncoder()
 df.C=enc.fit_transform(df.C)
-df.to_csv("/content/Dataset - Sheet1.csv")
+df.to_csv("/content/trainsp.csv")
+
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+df = pd.read_csv("/content/test.csv")
+
+df.C=enc.transform(df.C)
+df.to_csv("/content/test.csv")
 
 from datasets import load_dataset
-dataset = load_dataset('csv', data_files='/content/Dataset - Sheet1.csv')
+tdataset = load_dataset('csv', data_files='/content/trainsp.csv')
+tedataset =load_dataset('csv', data_files='/content/test.csv')
 
-dataset=dataset.remove_columns("Unnamed: 0")
-dataset
+tdataset=tdataset.remove_columns("Unnamed: 0")
+tedataset=tedataset.remove_columns("Unnamed: 0")
+tdataset,tedataset
 
 from transformers import AutoTokenizer
 
@@ -30,28 +39,27 @@ preprocessor_tok = AutoTokenizer.from_pretrained("bert-base-cased")
 def tokenize_function(examples):
     return preprocessor_tok(examples["Q"], padding="max_length", truncation=True)
 
-tokenized_datasets = dataset.map(tokenize_function, batched=True)
+tokenized_tdatasets = tdataset.map(tokenize_function, batched=True)
+tokenized_tedatasets = tedataset.map(tokenize_function, batched=True)
 
-tokenized_datasets
+tokenized_tedatasets
 
 import tensorflow as tf
 from transformers import TFAutoModelForSequenceClassification
 
 model = TFAutoModelForSequenceClassification.from_pretrained("bert-base-cased", num_labels=6)
 
-small_train_dataset = tokenized_datasets["train"].shuffle(seed=42).select(range(171))
-small_eval_dataset = tokenized_datasets["train"].shuffle(seed=42).select(range(171))
-full_train_dataset = tokenized_datasets["train"]
-full_eval_dataset = tokenized_datasets["train"]
+small_train_dataset = tokenized_tdatasets["train"].shuffle(seed=42).select(range(136))
+small_eval_dataset = tokenized_tedatasets["train"].shuffle(seed=42).select(range(35))
 
 tf_train_dataset = small_train_dataset.remove_columns(["Q"]).with_format("tensorflow")
 tf_eval_dataset = small_eval_dataset.remove_columns(["Q"]).with_format("tensorflow")
 
-train_features = {x: tf_train_dataset[x].to_tensor() for x in preprocessor_tok.model_input_names}
+train_features = {x: tf_train_dataset[x] for x in preprocessor_tok.model_input_names}
 train_tf_dataset = tf.data.Dataset.from_tensor_slices((train_features, tf_train_dataset["C"]))
 train_tf_dataset = train_tf_dataset.shuffle(len(tf_train_dataset)).batch(2)
 
-eval_features = {x: tf_eval_dataset[x].to_tensor() for x in preprocessor_tok.model_input_names}
+eval_features = {x: tf_eval_dataset[x] for x in preprocessor_tok.model_input_names}
 eval_tf_dataset = tf.data.Dataset.from_tensor_slices((eval_features, tf_eval_dataset["C"]))
 eval_tf_dataset = eval_tf_dataset.batch(2)
 
@@ -61,7 +69,9 @@ model.compile(
     metrics=tf.metrics.SparseCategoricalAccuracy(),
 )
 
-model.fit(train_tf_dataset, validation_data=eval_tf_dataset, epochs=3)
+model.fit(train_tf_dataset, epochs=4)
+
+model.evaluate(eval_tf_dataset)
 
 import numpy as np
 inp=preprocessor_tok(' active/passive voice"I forgot my brother running off the train "')
